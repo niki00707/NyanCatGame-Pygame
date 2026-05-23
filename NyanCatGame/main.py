@@ -170,7 +170,7 @@ class Food:
         self.y = random.randint(50, HEIGHT - 50)
 
         base_speed = LEVELS[difficulty_level]["speed"]
-        dynamic_bonus = (eaten_food // 10) * 0.7
+        dynamic_bonus = (eaten_food // 10) * 2
 
         self.speed = base_speed + dynamic_bonus
         self.rect = self.image.get_rect(topleft=(self.x, self.y))

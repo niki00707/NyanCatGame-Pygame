@@ -98,7 +98,7 @@ SOUND_MENU = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "menu_music
 # Установка громкости звуков
 SOUND_MENU.set_volume(0.15)
 SOUND_SPACE.set_volume(0.03)
-SOUND_BG_MUSIC.set_volume(0.1)
+SOUND_BG_MUSIC.set_volume(0.08)
 SOUND_EAT_GOOD.set_volume(0.2)
 SOUND_LEVEL_COMPLETE.set_volume(0.4)
 FINISH_GAME.set_volume(0.3)
@@ -127,7 +127,7 @@ class Cat:
         self.frames = NYAN_FRAMES
         self.current_frame = 0
         self.image = self.frames[0]
-        self.rect = pygame.Rect(self.x, self.y, 30, 30)
+        self.rect = pygame.image.get_rect(topleft=(self.x, self.y))
 
     # Анимация
     def animate(self):
@@ -170,7 +170,7 @@ class Food:
         self.y = random.randint(50, HEIGHT - 50)
 
         base_speed = LEVELS[difficulty_level]["speed"]
-        dynamic_bonus = (eaten_food // 10) * 2
+        dynamic_bonus = (eaten_food // 10) * 0.7
 
         self.speed = base_speed + dynamic_bonus
         self.rect = self.image.get_rect(topleft=(self.x, self.y))

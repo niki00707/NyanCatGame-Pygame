@@ -73,25 +73,13 @@ SETTINGS_ICON = pygame.transform.scale(SETTINGS_ICON, (64, 64))
 SETTINGS_ICON.fill(WHITE, special_flags=pygame.BLEND_RGB_MAX)
 
 # ЗАГРУЗКА ЗВУКОВ
-SOUND_EAT_GOOD = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "eat_good.wav")
-)
+SOUND_EAT_GOOD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_good.wav"))
 SOUND_EAT_BAD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_bad.wav"))
-SOUND_HAPPINESS_STAR = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "happiness_star.wav")
-)
-SOUND_GAME_OVER = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "game_over.mp3")
-)
-SOUND_BG_MUSIC = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "background_music.mp3")
-)
-SOUND_LEVEL_COMPLETE = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "level_complete.mp3")
-)
-FINISH_GAME = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "finish_game.mp3")
-)
+SOUND_HAPPINESS_STAR = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "happiness_star.wav"))
+SOUND_GAME_OVER = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "game_over.mp3"))
+SOUND_BG_MUSIC = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "background_music.mp3"))
+SOUND_LEVEL_COMPLETE = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "level_complete.mp3"))
+FINISH_GAME = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "finish_game.mp3"))
 SOUND_SPACE = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "fon_music.mp3"))
 SOUND_MENU = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "menu_music.mp3"))
 
@@ -670,9 +658,7 @@ while game:
 
         # Тексты
         finish_text = big_font.render("ИГРА ЗАВЕРШЕНА!", True, YELLOW)
-        info1 = small_font.render(
-            "Nyan Cat прошёл все космические испытания!", True, WHITE
-        )
+        info1 = small_font.render("Nyan Cat прошёл все космические испытания!", True, WHITE)
         info2 = small_font.render("Вы отлично справились", True, GREEN)
         info3 = small_font.render("ENTER - вернуться в меню", True, WHITE)
 
@@ -696,9 +682,7 @@ while game:
 
         # Текст победы
         win_text = big_font.render(f"УРОВЕНЬ {current_level} ПРОЙДЕН!", True, YELLOW)
-        info_text = small_font.render(
-            "Поздравляем! Вы открыли следующий уровень!", True, WHITE
-        )
+        info_text = small_font.render("Поздравляем! Вы открыли следующий уровень!", True, WHITE)
         continue_text = small_font.render("ENTER - продолжить", True, GREEN)
 
         # Отрисовка текста
@@ -851,9 +835,7 @@ while game:
         # Отрисовка текста
         screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - 120))
         screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2))
-        screen.blit(
-            restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT // 2 + 70)
-        )
+        screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT // 2 + 70))
 
     # ОСНОВНАЯ ИГРА
     else:

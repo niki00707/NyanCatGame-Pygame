@@ -658,9 +658,7 @@ while game:
 
         # Тексты
         finish_text = big_font.render("ИГРА ЗАВЕРШЕНА!", True, YELLOW)
-        info1 = small_font.render(
-            "Nyan Cat прошёл все космические испытания!", True, WHITE
-        )
+        info1 = small_font.render("Nyan Cat прошёл все космические испытания!", True, WHITE)
         info2 = small_font.render("Вы отлично справились", True, GREEN)
         info3 = small_font.render("ENTER - вернуться в меню", True, WHITE)
 
@@ -684,9 +682,7 @@ while game:
 
         # Текст победы
         win_text = big_font.render(f"УРОВЕНЬ {current_level} ПРОЙДЕН!", True, YELLOW)
-        info_text = small_font.render(
-            "Поздравляем! Вы открыли следующий уровень!", True, WHITE
-        )
+        info_text = small_font.render("Поздравляем! Вы открыли следующий уровень!", True, WHITE)
         continue_text = small_font.render("ENTER - продолжить", True, GREEN)
 
         # Отрисовка текста
@@ -839,9 +835,7 @@ while game:
         # Отрисовка текста
         screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - 120))
         screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2))
-        screen.blit(
-            restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT // 2 + 70)
-        )
+        screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT // 2 + 70))
 
     # ОСНОВНАЯ ИГРА
     else:

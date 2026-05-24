@@ -29,7 +29,7 @@ BLACK = (0, 0, 0)
 # ЗАГРУЗКА ИЗОБРАЖЕНИЙ
 
 # Путь к папке проекта
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+PROJECT_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "NyanCatGame")
 
 
 NYAN_FRAMES = []
@@ -73,25 +73,13 @@ SETTINGS_ICON = pygame.transform.scale(SETTINGS_ICON, (64, 64))
 SETTINGS_ICON.fill(WHITE, special_flags=pygame.BLEND_RGB_MAX)
 
 # ЗАГРУЗКА ЗВУКОВ
-SOUND_EAT_GOOD = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "eat_good.wav")
-)
+SOUND_EAT_GOOD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_good.wav"))
 SOUND_EAT_BAD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_bad.wav"))
-SOUND_HAPPINESS_STAR = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "happiness_star.wav")
-)
-SOUND_GAME_OVER = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "game_over.mp3")
-)
-SOUND_BG_MUSIC = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "background_music.mp3")
-)
-SOUND_LEVEL_COMPLETE = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "level_complete.mp3")
-)
-FINISH_GAME = pygame.mixer.Sound(
-    os.path.join(PROJECT_PATH, "sounds", "finish_game.mp3")
-)
+SOUND_HAPPINESS_STAR = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "happiness_star.wav"))
+SOUND_GAME_OVER = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "game_over.mp3"))
+SOUND_BG_MUSIC = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "background_music.mp3"))
+SOUND_LEVEL_COMPLETE = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "level_complete.mp3"))
+FINISH_GAME = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "finish_game.mp3"))
 SOUND_SPACE = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "fon_music.mp3"))
 SOUND_MENU = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "menu_music.mp3"))
 
@@ -127,7 +115,7 @@ class Cat:
         self.frames = NYAN_FRAMES
         self.current_frame = 0
         self.image = self.frames[0]
-        self.rect = pygame.image.get_rect(topleft=(self.x, self.y))
+        self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
     # Анимация
     def animate(self):

@@ -72,6 +72,13 @@ SETTINGS_ICON = pygame.image.load(settings_path).convert_alpha()
 SETTINGS_ICON = pygame.transform.scale(SETTINGS_ICON, (64, 64))
 SETTINGS_ICON.fill(WHITE, special_flags=pygame.BLEND_RGB_MAX)
 
+# Загрузка кнопки настроек
+settings_path = os.path.join(PROJECT_PATH, "images", "picture", "music_button.png")
+MUSIC_ICON = pygame.image.load(settings_path).convert_alpha()
+MUSIC_ICON = pygame.transform.scale(MUSIC_ICON, (32, 32))
+MUSIC_ICON.fill(WHITE, special_flags=pygame.BLEND_RGB_MAX)
+
+
 # ЗАГРУЗКА ЗВУКОВ
 SOUND_EAT_GOOD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_good.wav"))
 SOUND_EAT_BAD = pygame.mixer.Sound(os.path.join(PROJECT_PATH, "sounds", "eat_bad.wav"))
@@ -258,6 +265,34 @@ def reset_game():
 # Запуск музыки менюш
 SOUND_MENU.play(-1)
 
+def play_music():
+    global music_enabled
+
+    music_enabled = not music_enabled
+
+    SOUND_MENU.stop()
+    SOUND_BG_MUSIC.stop()
+    SOUND_SPACE.stop()
+    SOUND_LEVEL_COMPLETE.stop()
+    FINISH_GAME.stop()
+    SOUND_GAME_OVER.stop()
+
+    if not music_enabled:
+        return
+
+    if menu:
+        SOUND_MENU.play(-1)
+
+    elif level_complete:
+        SOUND_LEVEL_COMPLETE.play()
+
+    # Полное прохождение
+    elif game_finished:
+        FINISH_GAME.play()
+    elif not game_over:
+        SOUND_BG_MUSIC.play(-1)
+        SOUND_SPACE.play(-1)
+
 
 # ИГРОВЫЕ СОСТОЯНИЯ
 game = True
@@ -270,6 +305,9 @@ game_finished = False
 settings_menu = False
 controls_menu = False
 rules_menu = False
+
+
+music_enabled = True
 
 # Текущий уровень
 current_level = 1
@@ -288,6 +326,7 @@ hard_button = pygame.Rect(270, 450, 260, 70)
 controls_button = pygame.Rect(250, 240, 300, 80)
 rules_button = pygame.Rect(250, 360, 300, 80)
 settings_button = SETTINGS_ICON.get_rect(topleft=(700, 20))
+music_button = MUSIC_ICON.get_rect(topleft=(30, 550))
 
 
 # ФРАЗЫ В МЕНЮ
@@ -320,6 +359,12 @@ while game:
     # Обработка событий
     for event in pygame.event.get():
 
+        # Кнопка музыки
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            if music_button.collidepoint(event.pos):
+                play_music()
+
         # Закрытие окна
         if event.type == pygame.QUIT:
             game = False
@@ -335,8 +380,10 @@ while game:
                 SOUND_BG_MUSIC.stop()
                 SOUND_SPACE.stop()
 
-                SOUND_BG_MUSIC.play(-1)
-                SOUND_SPACE.play(-1)
+                if music_enabled:
+                    SOUND_BG_MUSIC.stop()
+                    SOUND_BG_MUSIC.play(-1)
+                    SOUND_SPACE.play(-1)
 
                 # Переход в меню уровней
                 menu = False
@@ -355,8 +402,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     # Выбор уровня
                     current_level = 1
@@ -374,8 +423,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     # Выбор уровня
                     current_level = 2
@@ -393,8 +444,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     # Выбор уровня
                     current_level = 3
@@ -416,8 +469,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     current_level = 1
                     level_menu = False
@@ -428,8 +483,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     current_level = 2
                     level_menu = False
@@ -440,8 +497,10 @@ while game:
                     SOUND_BG_MUSIC.stop()
                     SOUND_SPACE.stop()
 
-                    SOUND_BG_MUSIC.play(-1)
-                    SOUND_SPACE.play(-1)
+                    if music_enabled:
+                        SOUND_BG_MUSIC.stop()
+                        SOUND_BG_MUSIC.play(-1)
+                        SOUND_SPACE.play(-1)
 
                     current_level = 3
                     level_menu = False
@@ -889,12 +948,14 @@ while game:
                     score += 1
                     eaten_food += 1
 
-                    SOUND_EAT_GOOD.play()
+                    if music_enabled:
+                        SOUND_EAT_GOOD.play()
 
                 # Если плохая еда
                 else:
                     happiness -= 1
-                    SOUND_EAT_BAD.play()
+                    if music_enabled:
+                        SOUND_EAT_BAD.play()
 
                 foods.remove(food)
 
@@ -928,7 +989,8 @@ while game:
                 # Использование максимум 3х жизней
                 happiness = min(3, happiness + 1)
 
-                SOUND_HAPPINESS_STAR.play()
+                if music_enabled:
+                    SOUND_HAPPINESS_STAR.play()
 
                 happiness_stars.remove(star)
 
@@ -965,7 +1027,8 @@ while game:
                 SOUND_BG_MUSIC.stop()
                 SOUND_SPACE.stop()
 
-                SOUND_LEVEL_COMPLETE.play()
+                if music_enabled:
+                    SOUND_LEVEL_COMPLETE.play()
 
                 unlocked_levels = max(unlocked_levels, 2)
                 level_complete = True
@@ -975,7 +1038,8 @@ while game:
                 SOUND_BG_MUSIC.stop()
                 SOUND_SPACE.stop()
 
-                SOUND_LEVEL_COMPLETE.play()
+                if music_enabled:
+                    SOUND_LEVEL_COMPLETE.play()
 
                 unlocked_levels = max(unlocked_levels, 3)
                 level_complete = True
@@ -995,8 +1059,11 @@ while game:
             game_over = True
 
             SOUND_BG_MUSIC.stop()
-            SOUND_GAME_OVER.play()
+            if music_enabled:
+                SOUND_GAME_OVER.play()
 
+    # Кнопка музыки
+    screen.blit(MUSIC_ICON, music_button)
     # Обновление экрана
     pygame.display.update()
 
